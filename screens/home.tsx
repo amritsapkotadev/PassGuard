@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import React from 'react';
+import password from './password';
 
 const Home = () => {
   return (
@@ -41,6 +42,17 @@ const Home = () => {
             <Text style={styles.documentText}>Documents</Text>
           </TouchableOpacity>
         </View>
+      </View>
+      
+      {/* Middle Portion Section */}
+      <View style={styles.middleportion}>
+        <Text style={styles.middleportionText}>Saved Password</Text>
+      </View>
+      
+      {/* Saved Password Section */}
+      <View style={styles.savedpassword}>
+        <Text style={styles.savedpasswordText}>Your Saved Passwords</Text>
+        {/* You can add more content here like a list of saved passwords */}
       </View>
     </View>
   );
@@ -191,6 +203,35 @@ const styles = StyleSheet.create({
   documentText: {
     color: '#FFFFFF', // Bright text for contrast
     fontSize: 20, // Larger font size for prominence
+    fontFamily: 'Poppins-Bold',
+  },
+  
+  middleportion: {
+    width: '100%',
+    backgroundColor: '#2C3E50', // Darker background for separation
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    marginTop: 20,
+    borderRadius: 12,
+  },
+  middleportionText: {
+    color: '#FFFFFF', // White text for contrast
+    fontSize: 18,
+    fontFamily: 'Poppins-Bold',
+    textAlign: 'center',
+  },
+  savedpassword: {
+    marginTop: 20,
+    width: '100%',
+    padding: 15,
+    backgroundColor: '#34495E', // Subtle background for the password section
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  savedpasswordText: {
+    color: '#FFFFFF',
+    fontSize: 18,
     fontFamily: 'Poppins-Bold',
   },
 });
