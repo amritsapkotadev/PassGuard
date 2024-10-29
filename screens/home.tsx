@@ -1,7 +1,12 @@
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
-import password from './password';
-
 const Home = () => {
   return (
     <View style={styles.container}>
@@ -10,11 +15,17 @@ const Home = () => {
           <Text style={styles.greetingText}>Hello, Harry</Text>
           <Text style={styles.welcomeText}>Welcome to your home</Text>
         </View>
-        <Image source={require('../images/Notification.png')} style={styles.notificationIcon} />
+        <Image
+          source={require('../images/Notification.png')}
+          style={styles.notificationIcon}
+        />
       </View>
       <View style={styles.passwordSearchContainer}>
         <View style={styles.searchContainer}>
-          <Image source={require('../images/searchicon.png')} style={styles.searchIcon} />
+          <Image
+            source={require('../images/searchicon.png')}
+            style={styles.searchIcon}
+          />
           <TextInput
             style={styles.passwordSearchInput}
             placeholder="Search password....."
@@ -23,7 +34,10 @@ const Home = () => {
         </View>
       </View>
       <View style={styles.messageContainer}>
-        <Image source={require('../images/handshake.png')} style={styles.messageImage} />
+        <Image
+          source={require('../images/handshake.png')}
+          style={styles.messageImage}
+        />
         <Text style={styles.messageText}>
           Attack happens daily. Just be prepared to prevent the attack.
         </Text>
@@ -42,17 +56,6 @@ const Home = () => {
             <Text style={styles.documentText}>Documents</Text>
           </TouchableOpacity>
         </View>
-      </View>
-      
-      {/* Middle Portion Section */}
-      <View style={styles.middleportion}>
-        <Text style={styles.middleportionText}>Saved Password</Text>
-      </View>
-      
-      {/* Saved Password Section */}
-      <View style={styles.savedpassword}>
-        <Text style={styles.savedpasswordText}>Your Saved Passwords</Text>
-        {/* You can add more content here like a list of saved passwords */}
       </View>
     </View>
   );
@@ -130,7 +133,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     elevation: 10,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: {width: 0, height: 4},
     shadowOpacity: 0.3,
     shadowRadius: 8,
     width: '100%',
@@ -147,7 +150,7 @@ const styles = StyleSheet.create({
   messageImage: {
     width: 80,
     height: 80,
-    transform: [{ rotate: '90deg' }],
+    transform: [{rotate: '90deg'}],
   },
   rowContainer: {
     flexDirection: 'row',
@@ -205,7 +208,7 @@ const styles = StyleSheet.create({
     fontSize: 20, // Larger font size for prominence
     fontFamily: 'Poppins-Bold',
   },
-  
+
   middleportion: {
     width: '100%',
     backgroundColor: '#2C3E50', // Darker background for separation
