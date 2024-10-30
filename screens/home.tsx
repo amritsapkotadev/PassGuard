@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    backgroundColor: '#101010', // Modern dark background
+    backgroundColor: 'black', // Modern dark background
     paddingHorizontal: 20,
   },
   headerContainer: {

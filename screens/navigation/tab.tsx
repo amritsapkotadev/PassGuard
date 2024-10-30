@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../home'; // Ensure the path is correct
 import Generate from '../generate'; // Capitalize component names to follow convention
-import Setting from '../setting'; // Capitalize component names to follow convention
+import Notes from '../Notes'; // Capitalize component names to follow convention
 import { StyleSheet, View, Image } from 'react-native'; // Import View and Image from 'react-native'
 import profile from '../profile';
 
@@ -35,8 +35,13 @@ const Tabs = () => {
           backgroundColor: 'black',
           borderTopColor: 'black',
           borderTopWidth: 1,
-          height: 60,
+
+          height: 70,
           ...styles.shadow,
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: 'bold',
         },
         tabBarActiveTintColor: '#F4D03F', // Active tab icon color
         tabBarInactiveTintColor: '#B3B3B3', // Inactive tab icon color
@@ -55,14 +60,18 @@ const Tabs = () => {
         component={Generate}
         options={{
             headerShown: false,
+            tabBarIcon: tabBarIcon(require('../../images/brush.png')), // Home icon
+
 
         }}
       />
       <Tab.Screen
-        name="Setting"
-        component={Setting}
+        name="Notes"
+        component={Notes}
         options={{
             headerShown: false,
+            tabBarIcon: tabBarIcon(require('../../images/notes.png')), // Home icon
+
 
         }}
       />
@@ -70,6 +79,8 @@ const Tabs = () => {
         name="Profile"
         component={profile}
         options={{
+          tabBarIcon: tabBarIcon(require('../../images/profile-user.png')), // Home icon
+
             headerShown: false,
 
         }}
