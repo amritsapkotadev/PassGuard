@@ -1,110 +1,88 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native'; // Import useNavigation
 
-const Add = () => {
-  // State to manage passwords for different accounts
-  const [emailPassword, setEmailPassword] = useState('');
-  const [socialPassword, setSocialPassword] = useState('');
-  const [bankPassword, setBankPassword] = useState('');
-
-  const handleSave = () => {
-    // You can add your logic to save or handle the passwords here
-    console.log('Email Password:', emailPassword);
-    console.log('Social Media Password:', socialPassword);
-    console.log('Bank Password:', bankPassword);
-  };
+const BasicLayout = () => {
+  const navigation = useNavigation(); // Get the navigation object
+  const [isPressedCard, setIsPressedCard] = useState(false);
+  const [isPressedPassword, setIsPressedPassword] = useState(false);
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.headerText}>Password Manager</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>What do you want to save?</Text>
 
-      {/* Email Account Password Input */}
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>Email Account:</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter email password"
-          secureTextEntry={true}
-          value={emailPassword}
-          onChangeText={setEmailPassword}
-        />
-      </View>
-
-      {/* Social Media Account Password Input */}
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>Social Media Account:</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter social media password"
-          secureTextEntry={true}
-          value={socialPassword}
-          onChangeText={setSocialPassword}
-        />
-      </View>
-
-      {/* Bank Account Password Input */}
-      <View style={styles.inputContainer}>
-        <Text style={styles.label}>Bank Account:</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Enter bank password"
-          secureTextEntry={true}
-          value={bankPassword}
-          onChangeText={setBankPassword}
-        />
-      </View>
-
-      {/* Save Button */}
-      <TouchableOpacity style={styles.button} onPress={handleSave}>
-        <Text style={styles.buttonText}>Save Passwords</Text>
+      <TouchableOpacity
+        style={isPressedCard ? styles.buttonPressed : styles.button}
+        activeOpacity={0.7}
+        onPress={() => navigation.navigate('CardDetails')} // Navigate to CardDetails screen
+        onPressIn={() => setIsPressedCard(true)}
+        onPressOut={() => setIsPressedCard(false)}
+      >
+        <Text style={styles.buttonText}>Personal  Details</Text>
       </TouchableOpacity>
-    </ScrollView>
+
+      <TouchableOpacity
+        style={isPressedPassword ? styles.buttonPressed : styles.button}
+        activeOpacity={0.7}
+        onPress={() => navigation.navigate('PasswordDetails')} // Navigate to PasswordDetails screen
+        onPressIn={() => setIsPressedPassword(true)}
+        onPressOut={() => setIsPressedPassword(false)}
+      >
+        <Text style={styles.buttonText}>Password Details</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
+export default BasicLayout;
+
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#000000',
     padding: 20,
-    backgroundColor: '#F4F6F7', // Light background color
   },
-  headerText: {
+  title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#333',
-    textAlign: 'center',
-    marginBottom: 20,
-  },
-  inputContainer: {
-    marginBottom: 20,
-  },
-  label: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 5,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#DDD',
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    fontSize: 16,
-    backgroundColor: '#FFF',
+    color: '#fff',
+    marginBottom: 30,
+    fontFamily: 'Poppins-Bold',
   },
   button: {
-    backgroundColor: '#3498DB',
-    paddingVertical: 12,
-    borderRadius: 8,
+    backgroundColor: '#00008B',
+    width: '80%',
+    paddingVertical: 15,
+    borderRadius: 12,
+    marginVertical: 20,
     alignItems: 'center',
-    marginTop: 20,
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 5,
+  },
+  buttonPressed: {
+    backgroundColor: 'red',
+    width: '80%',
+    paddingVertical: 15,
+    borderRadius: 12,
+    marginVertical: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 3,
   },
   buttonText: {
-    color: '#FFF',
+    color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
+    fontFamily: 'Poppins-Bold',
   },
 });
-
-export default Add;

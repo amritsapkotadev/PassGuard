@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React from 'react';
+
 const Home = () => {
   return (
     <View style={styles.container}>
@@ -20,6 +21,7 @@ const Home = () => {
           style={styles.notificationIcon}
         />
       </View>
+
       <View style={styles.passwordSearchContainer}>
         <View style={styles.searchContainer}>
           <Image
@@ -33,6 +35,7 @@ const Home = () => {
           />
         </View>
       </View>
+
       <View style={styles.messageContainer}>
         <Image
           source={require('../images/handshake.png')}
@@ -42,20 +45,27 @@ const Home = () => {
           Attack happens daily. Just be prepared to prevent the attack.
         </Text>
       </View>
+
       <View style={styles.rowContainer}>
         {/* Saved Password Container */}
         <View style={styles.leftContainer}>
           <Text style={styles.totalPasswordCountText}>Saved Passwords: 28</Text>
         </View>
-        {/* Cards and Documents Container */}
+
+        {/* Cards and Notes Container */}
         <View style={styles.rightContainer}>
           <TouchableOpacity style={styles.card} activeOpacity={0.7}>
             <Text style={styles.cardText}>Cards</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.document} activeOpacity={0.7}>
-            <Text style={styles.documentText}>Documents</Text>
+          <TouchableOpacity style={styles.Notes} activeOpacity={0.7}>
+            <Text style={styles.cardText}>Notes</Text>{' '}
+            {/* Corrected style here */}
           </TouchableOpacity>
         </View>
+      </View>
+
+      <View style={styles.savedpassword}>
+        <Text style={styles.savedpasswordText}>Saved Passwords </Text>
       </View>
     </View>
   );
@@ -68,7 +78,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    backgroundColor: 'black', // Modern dark background
+    backgroundColor: 'black',
     paddingHorizontal: 20,
   },
   headerContainer: {
@@ -126,7 +136,7 @@ const styles = StyleSheet.create({
   messageContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#0057D9', // Bright blue for emphasis
+    backgroundColor: '#0057D9',
     alignSelf: 'center',
     padding: 20,
     marginTop: 20,
@@ -159,82 +169,59 @@ const styles = StyleSheet.create({
   },
   leftContainer: {
     width: '50%',
-    backgroundColor: '#1ABC9C', // Soft green for "Saved Passwords"
+    backgroundColor: '#1ABC9C',
     padding: 30,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1.5,
     borderColor: '#1ABC9C',
     borderRadius: 15,
-    marginRight: 10, // Space between left and right containers
+    marginRight: 10,
     height: 250,
   },
   totalPasswordCountText: {
-    color: '#FFFFFF', // White for contrast
+    color: '#FFFFFF',
     fontSize: 22,
     fontFamily: 'Poppins-Bold',
   },
   rightContainer: {
     width: '50%',
-    justifyContent: 'space-between', // Space between Cards and Documents
+    justifyContent: 'space-between',
   },
   card: {
-    backgroundColor: '#3498DB', // Bright blue for cards
+    backgroundColor: '#3498DB',
     borderRadius: 15,
     padding: 25,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1.5,
     borderColor: '#3498DB',
-    height: 110, // Increased height for balance
+    height: 110,
   },
-  document: {
-    backgroundColor: '#E74C3C', // Bold red for documents
+  Notes: {
+    backgroundColor: '#E74C3C',
     borderRadius: 15,
     padding: 25,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1.5,
     borderColor: '#E74C3C',
-    height: 110, // Increased height for balance
+    height: 110,
   },
   cardText: {
-    color: '#FFFFFF', // Bright text for contrast
-    fontSize: 20, // Larger font size for prominence
+    color: '#FFFFFF',
+    fontSize: 20,
     fontFamily: 'Poppins-Bold',
-  },
-  documentText: {
-    color: '#FFFFFF', // Bright text for contrast
-    fontSize: 20, // Larger font size for prominence
-    fontFamily: 'Poppins-Bold',
-  },
-
-  middleportion: {
-    width: '100%',
-    backgroundColor: '#2C3E50', // Darker background for separation
-    paddingHorizontal: 20,
-    paddingVertical: 15,
-    marginTop: 20,
-    borderRadius: 12,
-  },
-  middleportionText: {
-    color: '#FFFFFF', // White text for contrast
-    fontSize: 18,
-    fontFamily: 'Poppins-Bold',
-    textAlign: 'center',
   },
   savedpassword: {
     marginTop: 20,
     width: '100%',
     padding: 15,
-    backgroundColor: '#34495E', // Subtle background for the password section
-    borderRadius: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   savedpasswordText: {
     color: '#FFFFFF',
-    fontSize: 18,
+    fontSize: 25,
     fontFamily: 'Poppins-Bold',
+    fontWeight: 'bold',
   },
 });

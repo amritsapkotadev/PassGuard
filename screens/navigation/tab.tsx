@@ -1,54 +1,53 @@
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from '../home';
 import Generate from '../generate';
 import Notes from '../Notes';
 import Profile from '../profile';
-import Add from './../Add'; // Import the Add screen component
-import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
+import Add from './../Add'; // Import Add screen
+import {StyleSheet, View, Image, TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 const Tab = createBottomTabNavigator();
 
-// Component for standard tab icons
-const TabIcon = ({ source, focused }) => (
+// Icon component to render tab icons
+const TabIcon = ({source, focused}) => (
   <View style={styles.iconContainer}>
     <Image
       source={source}
       style={{
         width: 24,
         height: 24,
-        tintColor: focused ? '#F4D03F' : '#B3B3B3', // Color based on focus
+        tintColor: focused ? '#F4D03F' : '#B3B3B3',
       }}
     />
   </View>
 );
 
-// Floating button in the center of the tab bar
-const CustomTabBarButton = ({ children, onPress }) => (
+// Custom button for the floating "+" icon
+const CustomTabBarButton = ({children, onPress}) => (
   <TouchableOpacity
-    style={{
-      top: -40, // Lift the button above the tab bar
-      justifyContent: 'center',
-      alignItems: 'center',
-      ...styles.shadow, // Shadow effect for a floating look
-    }}
-    onPress={onPress} // Trigger the onPress function
-  >
+    style={styles.customButtonContainer}
+    onPress={onPress}
+    activeOpacity={0.7}>
     <View style={styles.floatingButton}>{children}</View>
   </TouchableOpacity>
 );
 
-// Helper function to generate tab icons
-const tabBarIcon = (source) => ({ focused }) => <TabIcon source={source} focused={focused} />;
+const tabBarIcon =
+  source =>
+  ({focused}) =>
+    <TabIcon source={source} focused={focused} />;
 
 const Tabs = () => {
+  const navigation = useNavigation(); // Using navigation to programmatically navigate to the Add screen
+
   return (
     <Tab.Navigator
       screenOptions={{
         tabBarStyle: {
           backgroundColor: 'black',
           borderTopColor: 'black',
-          borderTopWidth: 1,
           height: 70,
           ...styles.shadow,
         },
@@ -58,8 +57,7 @@ const Tabs = () => {
         },
         tabBarActiveTintColor: '#F4D03F',
         tabBarInactiveTintColor: '#B3B3B3',
-      }}
-    >
+      }}>
       <Tab.Screen
         name="Home"
         component={Home}
@@ -76,30 +74,30 @@ const Tabs = () => {
           tabBarIcon: tabBarIcon(require('../../images/brush.png')),
         }}
       />
-      
-      {/* Conditionally hide the "+" button in the "Add" screen */}
+
+      {/* Floating "+" button */}
       <Tab.Screen
         name="Add"
         component={Add}
-        options={({ route }) => ({
+        options={{
+          headerShown: false,
           tabBarIcon: () => (
             <Image
               source={require('../../images/plus.png')}
-              style={{ width: 30, height: 30, tintColor: 'white' }}
+              style={{width: 30, height: 30, tintColor: 'white'}}
             />
           ),
-          tabBarButton: (props) => {
-            // Hide the "+" button when on the "Add" screen
-            return route.name === "Add" ? null : (
-              <CustomTabBarButton {...props} onPress={() => {}}>
-                <Image
-                  source={require('../../images/plus.png')}
-                  style={{ width: 30, height: 30, tintColor: 'white' }}
-                />
-              </CustomTabBarButton>
-            );
-          },
-        })}
+          tabBarButton: props => (
+            <CustomTabBarButton
+              {...props}
+              onPress={() => navigation.navigate('Add')}>
+              <Image
+                source={require('../../images/plus.png')}
+                style={{width: 30, height: 30, tintColor: 'white'}}
+              />
+            </CustomTabBarButton>
+          ),
+        }}
       />
 
       <Tab.Screen
@@ -137,13 +135,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  customButtonContainer: {
+    top: -30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 10,
+  },
   floatingButton: {
     width: 60,
     height: 60,
-    borderRadius: 35,
+    borderRadius: 30,
     backgroundColor: '#F4D03F',
     justifyContent: 'center',
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 4},
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 5,
   },
 });
 
